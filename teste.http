@@ -1,0 +1,10 @@
+### Teste de Simulação
+POST http://localhost:8081/simular-investimento
+Content-Type: application/json
+
+{
+  "clienteId": 123,
+  "valor": 10000.00,
+  "prazoMeses": 12,
+  "tipoProduto": "CDB"
+}
