@@ -10,5 +10,6 @@ public class HealthController {
     @GetMapping("/health")
     public Map<String, String> verificarStatus() {
         return Map.of("status", "UP");
+
     }
 }
