@@ -19,10 +19,11 @@ public class PerfilController {
         this.service = service;
     }
 
-    @GetMapping("/perfil-risco/{clienteId}")
-    public PerfilResponse consultarPerfil(@PathVariable Long clienteId) {
+    @PostMapping("/perfil-risco")
+    public PerfilResponse analisarPerfil(@RequestBody br.com.pat.investimento_api.dto.PerfilRequest questionario) {
         contadorConsultasPerfil++;
-        return service.identificarPerfil(clienteId);
+
+        return service.identificarPerfil(questionario);
     }
 
     @GetMapping("/produtos-recomendados/{perfil}")

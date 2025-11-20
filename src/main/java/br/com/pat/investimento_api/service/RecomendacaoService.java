@@ -15,12 +15,29 @@ public class RecomendacaoService {
         this.produtoRepository = produtoRepository;
     }
 
-    public PerfilResponse identificarPerfil(Long clienteId) {
-        if (clienteId % 2 == 0) {
-            return new PerfilResponse(clienteId, "Conservador", 25, "Prefere segurança.");
+    public PerfilResponse identificarPerfil(br.com.pat.investimento_api.dto.PerfilRequest req) {
+
+        int score = req.getToleranciaRisco()
+                + req.getHorizonte()
+                + req.getConhecimentoFinanceiro()
+                + req.getObjetivo()
+                + req.getSituacaoFinanceira();
+
+        String perfil;
+        String descricao;
+
+        if (score <= 20) {
+            perfil = "Conservador";
+            descricao = "Busca segurança e evita volatilidade.";
+        } else if (score <= 40) {
+            perfil = "Moderado";
+            descricao = "Aceita algum risco por retornos melhores.";
         } else {
-            return new PerfilResponse(clienteId, "Agressivo", 85, "Busca alta rentabilidade.");
+            perfil = "Agressivo";
+            descricao = "Aceita volatilidade para tentar retornos altos.";
         }
+
+        return new PerfilResponse(req.getClienteId(), perfil, score, descricao);
     }
     public List<Produto> recomendarProdutos(String perfil) {
         if ("Conservador".equalsIgnoreCase(perfil)) {

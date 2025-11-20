@@ -1,16 +1,16 @@
 
-# 💰 Painel de Investimentos - Desafio Caixa Verso
+# Painel de Investimentos - Desafio Caixa Verso
 
 API REST desenvolvida em Java 21 e Spring Boot para simulação de investimentos e análise de perfil de risco.
 
-## 🛠 Tecnologias Usadas
+## Tecnologias Usadas
 - Java 21
 - Spring Boot 3
 - SQLite (Banco de Dados em arquivo)
 - Docker
 - Lombok
 
-## 🚀 Como Rodar o Projeto
+## Como Rodar o Projeto
 
 ### Opção 1: Via Maven (Terminal)
 Na raiz do projeto, execute:
@@ -29,7 +29,7 @@ docker run -p 8081:8081 investimento-api
 
 -----
 
-## 📡 Endpoints Principais
+## Endpoints Principais
 
 ### 1\. Simular Investimento
 
@@ -50,13 +50,20 @@ docker run -p 8081:8081 investimento-api
 
 **GET** `http://localhost:8081/simulacoes`
 
-### 3\. Descobrir Perfil de Risco
+### 3\. Descobrir Perfil de Risco (Suitability)
+**POST** `http://localhost:8081/perfil-risco`
 
-**GET** `http://localhost:8081/perfil-risco/{id_do_cliente}`
-
-* ID Par = Conservador
-* ID Ímpar = Agressivo
-
+**Body (JSON) - Pontuação de 0 a 20:**
+```json
+{
+  "clienteId": 123,
+  "toleranciaRisco": 10,
+  "horizonte": 10,
+  "conhecimentoFinanceiro": 10,
+  "objetivo": 10,
+  "situacaoFinanceira": 10
+}
+```
 ### 4\. Recomendação de Produtos
 
 **GET** `http://localhost:8081/produtos-recomendados/{perfil}`
