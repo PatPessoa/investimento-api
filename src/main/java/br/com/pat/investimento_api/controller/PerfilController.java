@@ -20,9 +20,8 @@ public class PerfilController {
     }
 
     @PostMapping("/perfil-risco")
-    public PerfilResponse analisarPerfil(@RequestBody br.com.pat.investimento_api.dto.PerfilRequest questionario) {
+    public PerfilResponse analisarPerfil(@RequestBody @jakarta.validation.Valid br.com.pat.investimento_api.dto.PerfilRequest questionario) {
         contadorConsultasPerfil++;
-
         return service.identificarPerfil(questionario);
     }
 
