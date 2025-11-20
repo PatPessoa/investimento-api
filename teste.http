@@ -1,4 +1,4 @@
-### Teste de Perfil (Suitability)
+### 1. Teste de Perfil com Sucesso
 POST http://localhost:8081/perfil-risco
 Content-Type: application/json
 
@@ -9,4 +9,28 @@ Content-Type: application/json
   "conhecimentoFinanceiro": 10,
   "objetivo": 10,
   "situacaoFinanceira": 10
+}
+
+### 2. Teste de Validação de Erro (Deve retornar 400)
+POST http://localhost:8081/perfil-risco
+Content-Type: application/json
+
+{
+  "clienteId": 123,
+  "toleranciaRisco": 15,
+  "horizonte": 10,
+  "conhecimentoFinanceiro": 10,
+  "objetivo": 10,
+  "situacaoFinanceira": 10
+}
+
+### 3. Simular Investimento (CDB)
+POST http://localhost:8081/simular-investimento
+Content-Type: application/json
+
+{
+  "clienteId": 123,
+  "valor": 10000.00,
+  "prazoMeses": 12,
+  "tipoProduto": "CDB"
 }
