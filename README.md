@@ -21,7 +21,8 @@ flowchart TD
 ```
 ---
 ## 🧠 Fluxo do Suitability (Perfil de Risco)
-```flowchart LR
+```mermaid
+flowchart LR
     Q["Questionário: 5 perguntas"] --> S["Soma dos Pontos"]
     S --> C{"Score Total"}
     C -->|0-20| CONS[Conservador]
