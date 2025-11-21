@@ -1,14 +1,36 @@
-# 📊 Painel de Investimentos – Desafio Caixa Verso
+# 📊 Painel de Investimentos - Desafio Caixa Verso
 
-API REST desenvolvida em **Java 21 + Spring Boot 3** para:
+![Java](https://img.shields.io/badge/Java-21-blue)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-green)
+![Build Status](https://github.com/PatPessoa/investimento-api/actions/workflows/maven.yml/badge.svg)
+![Tests](https://img.shields.io/badge/Tests-passing-brightgreen)
 
-- ✔️ Simulação de investimentos
-- ✔️ Identificação de perfil de risco (Suitability)
-- ✔️ Recomendação de produtos
-- ✔️ Registro de telemetria de chamadas
+API REST desenvolvida em Java 21 + Spring Boot 3 para simulação de investimentos, análise de perfil de risco (Suitability) e recomendação de produtos.
 
 ---
 
+## 🗺️ Arquitetura e Fluxos
+
+### 🏛️ Desenho da Arquitetura
+```mermaid
+flowchart TD
+    A[Cliente / Frontend / Swagger] --> B[Controller (API REST)]
+    B --> C[Service (Regras de Negócio)]
+    C --> D[Repository (Interface JPA)]
+    D --> E[(SQLite - investimentos.db)]
+```
+---
+## 🧠 Fluxo do Suitability (Perfil de Risco)
+```flowchart LR
+Q[Questionário: 5 perguntas] --> S[Soma dos Pontos]
+S --> C{Score Total}
+C -->|0-20| CONS[Conservador]
+C -->|21-40| MOD[Moderado]
+C -->|41-100| AGG[Agressivo]
+AGG --> R[Recomenda: Fundo/Ações]
+MOD --> R[Recomenda: CDB/LCI]
+CONS --> R[Recomenda: Tesouro/Poupança]
+```
 # 🧱 Arquitetura da Aplicação
 
 * **Camada Controller** – Expõe os endpoints REST
@@ -34,6 +56,8 @@ API REST desenvolvida em **Java 21 + Spring Boot 3** para:
 * **Docker**
 * **Lombok**
 * **JUnit 5** (Testes automatizados)
+* **OpenAPI / Swagger** (Documentação Interativa)
+* **GitHub Actions** (CI/CD Pipeline)
 
 ---
 
@@ -46,8 +70,8 @@ Na raiz do projeto, execute:
 mvn spring-boot:run
 ```
 
-A API iniciará em:
-👉 **[http://localhost:8081](http://localhost:8081)**
+Acesse:
+👉 **http://localhost:8081/swagger-ui/index.html**
 
 ---
 
@@ -58,6 +82,14 @@ A API iniciará em:
 docker build -t investimento-api .
 docker run -p 8081:8081 investimento-api
 ```
+
+---
+# 📚 Documentação Interativa (Swagger)
+O projeto possui documentação automática. Após iniciar a aplicação, acesse:
+
+👉 Swagger UI: http://localhost:8081/swagger-ui/index.html 
+
+👉 JSON Docs: http://localhost:8081/v3/api-docs
 
 ---
 
