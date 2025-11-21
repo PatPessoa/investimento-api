@@ -14,22 +14,22 @@ API REST desenvolvida em Java 21 + Spring Boot 3 para simulação de investiment
 ### 🏛️ Desenho da Arquitetura
 ```mermaid
 flowchart TD
-    A[Cliente / Frontend / Swagger] --> B[Controller (API REST)]
-    B --> C[Service (Regras de Negócio)]
-    C --> D[Repository (Interface JPA)]
-    D --> E[(SQLite - investimentos.db)]
+    A["Cliente / Frontend / Swagger"] --> B["Controller (API REST)"]
+    B --> C["Service (Regras de Negócio)"]
+    C --> D["Repository (Interface JPA)"]
+    D --> E[("SQLite - investimentos.db")]
 ```
 ---
 ## 🧠 Fluxo do Suitability (Perfil de Risco)
 ```flowchart LR
-Q[Questionário: 5 perguntas] --> S[Soma dos Pontos]
-S --> C{Score Total}
-C -->|0-20| CONS[Conservador]
-C -->|21-40| MOD[Moderado]
-C -->|41-100| AGG[Agressivo]
-AGG --> R[Recomenda: Fundo/Ações]
-MOD --> R[Recomenda: CDB/LCI]
-CONS --> R[Recomenda: Tesouro/Poupança]
+    Q["Questionário: 5 perguntas"] --> S["Soma dos Pontos"]
+    S --> C{"Score Total"}
+    C -->|0-20| CONS[Conservador]
+    C -->|21-40| MOD[Moderado]
+    C -->|41-100| AGG[Agressivo]
+    AGG --> R["Recomenda: Fundo/Ações"]
+    MOD --> R["Recomenda: CDB/LCI"]
+    CONS --> R["Recomenda: Tesouro/Poupança"]
 ```
 # 🧱 Arquitetura da Aplicação
 
